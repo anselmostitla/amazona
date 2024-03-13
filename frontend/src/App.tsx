@@ -1,24 +1,34 @@
-import './App.css'
+// import './App.css'
+import Navbar from './components/Navbar'
 import { sampleProducts } from './data'
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <div>
-      <header>Amazona</header>
-      <main>
-        <ul>
+    <div className="flex flex-col h-full ">
+      <header>
+        <Navbar />
+      </header>
+      <main className="m-3 p-5 flex justify-center">
+        <div className="flex flex-row flex-wrap space-x-3 justify-around w-full">
           {sampleProducts.map((product) => (
-            <li key={product.slug}>
-              <img src={product.image} alt={product.name} className='product-image'/>
+            <div
+              key={product.slug}
+              className="flex flex-col items-center sm:max-w-[250px] w-100%"
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                className="sm:max-w-[250px]  w-100% "
+              />
               <h2>{product.name}</h2>
               <p>${product.price}</p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </main>
-      <footer>All rights reserved</footer>
+      <footer className="text-center">All rights reserved</footer>
     </div>
   )
 }

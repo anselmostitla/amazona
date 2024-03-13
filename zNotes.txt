@@ -1,4 +1,6 @@
 https://www.youtube.com/watch?v=-ifcPnXHn8Q
 
+Here I go: https://youtu.be/-ifcPnXHn8Q?si=PF14mezUCHGaFu1M&t=3059
+
 git config --global init.defaultBranch main
 
