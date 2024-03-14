@@ -6,6 +6,7 @@ import { getError } from '../utils'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
 import ProductItem from '../components/ProductItem'
+import { Helmet } from 'react-helmet-async'
 
 type State = {
   products: Product[]
@@ -50,20 +51,26 @@ const HomePage = () => {
       dispatch({ type: 'FETCH_REQUEST' })
       try {
         const result = await axios.get('/api/v1/products/')
-        console.log("result: ", result);
+        console.log('result: ', result)
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data })
       } catch (error) {
-         console.log("error from axios: ", error);
+        console.log('error from axios: ', error)
         dispatch({ type: 'FETCH_FAIL', payload: getError(error as ApiError) })
       }
     })()
   }, [])
 
-  return (
-      loading ? (<LoadingBox/>): error ? (<MessageBox/>) :
+  return loading ? (
+    <LoadingBox />
+  ) : error ? (
+    <MessageBox />
+  ) : (
     <div>
       <div className="m-3 p-5 flex justify-center">
         <div className="flex flex-row flex-wrap space-x-3 justify-around w-full">
+          <Helmet>
+            <title>Ts Amazona</title>
+          </Helmet>
           {products.map((product) => (
             <ProductItem product={product} />
           ))}

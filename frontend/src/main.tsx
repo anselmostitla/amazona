@@ -11,12 +11,13 @@ import {
 import HomePage from './pages/HomePage.tsx'
 import ProductPage from './pages/ProductPage.tsx'
 import axios from 'axios'
+import { HelmetProvider } from 'react-helmet-async'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<App />}>
       <Route index={true} element={<HomePage />} />
-      <Route path="product/:slug" element={<ProductPage />} />
+      <Route path="products/:slug" element={<ProductPage />} />
     </Route>
   )
 )
@@ -25,7 +26,8 @@ axios.defaults.baseURL = process.env.NODE_ENV == 'development'? 'http://localhos
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/* It is important to use  BrowserRouter if you want to use Link otherwise it will not work*/}
-    <RouterProvider router={router} />
+    <HelmetProvider>
+      <RouterProvider router={router} />
+    </HelmetProvider>
   </React.StrictMode>
 )
