@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-// import { sampleProducts } from '../data'
 import { Product } from '../types/Product'
 import { useEffect, useReducer } from 'react'
 import axios from 'axios'
@@ -7,6 +5,7 @@ import { ApiError } from '../types/ApiError'
 import { getError } from '../utils'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
+import ProductItem from '../components/ProductItem'
 
 type State = {
   products: Product[]
@@ -66,19 +65,7 @@ const HomePage = () => {
       <div className="m-3 p-5 flex justify-center">
         <div className="flex flex-row flex-wrap space-x-3 justify-around w-full">
           {products.map((product) => (
-            <Link
-              to={`/product/${product.slug}`}
-              key={product.slug}
-              className="flex flex-col items-center sm:max-w-[250px] w-100%"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="sm:max-w-[250px]  w-100% "
-              />
-              <h2>{product.name}</h2>
-              <p>${product.price}</p>
-            </Link>
+            <ProductItem product={product} />
           ))}
         </div>
       </div>
